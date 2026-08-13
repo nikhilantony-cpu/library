@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "Mobile-App",
-    "slug": "Mobile-App",
+    "name": "ECC Library",
+    "slug": "ecc-library",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ecc.libraryapp"
     },
     "android": {
+      "package": "com.ecc.libraryapp",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -19,6 +21,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "80340ae8-0af6-4494-b37d-f70a9545f947"
+      }
     }
   }
 }
