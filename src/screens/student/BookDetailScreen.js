@@ -32,8 +32,13 @@ export default function BookDetailScreen({ route, navigation }) {
             return;
         }
 
-        // Just directly show notification since we've eliminated popups
-        showNotification('Request sent to librarian. Please clear it at the counter.', 'success');
+        const result = issueBook(book.id, currentUser.id);
+        if (result.success) {
+            showNotification('Book successfully issued to your account!', 'success');
+            navigation.goBack();
+        } else {
+            showNotification(result.message, 'error');
+        }
     };
 
     const infoRows = [

@@ -33,18 +33,6 @@ export default function LoginScreen() {
         }, 800);
     };
 
-    const fillDemo = (type) => {
-        if (type === 'student') {
-            setEmail('arjun@ecc.edu');
-            setPassword('stu123');
-            setRole('student');
-        } else {
-            setEmail('librarian@ecc.edu');
-            setPassword('lib123');
-            setRole('librarian');
-        }
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
@@ -55,9 +43,9 @@ export default function LoginScreen() {
                         <View style={styles.logoCircle}>
                             <Ionicons name="library" size={40} color={COLORS.white} />
                         </View>
-                        <Text style={styles.collegeName}>ECC Department</Text>
-                        <Text style={styles.appName}>Library Management</Text>
-                        <Text style={styles.subtitle}>Electronics & Communication</Text>
+                        <Text style={styles.collegeName}>UC College</Text>
+                        <Text style={styles.appName}>ECC Department Library Management</Text>
+                        <Text style={styles.subtitle}>Electronics & Computer science </Text>
                     </View>
 
                     {/* Role Toggle */}

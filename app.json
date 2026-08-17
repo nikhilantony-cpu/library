@@ -8,7 +8,10 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ecc.libraryapp"
+      "bundleIdentifier": "com.ecc.libraryapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.ecc.libraryapp",
@@ -24,8 +27,18 @@
     },
     "extra": {
       "eas": {
-        "projectId": "80340ae8-0af6-4494-b37d-f70a9545f947"
+        "projectId": "8325b135-4dd7-4943-b6e6-f2ec754aa8dc"
       }
-    }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8325b135-4dd7-4943-b6e6-f2ec754aa8dc"
+    },
+    "owner": "nikkuzz",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

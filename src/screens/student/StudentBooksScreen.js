@@ -75,6 +75,7 @@ export default function StudentBooksScreen({ navigation }) {
                 data={CATS}
                 keyExtractor={item => item}
                 showsHorizontalScrollIndicator={false}
+                style={{ flexGrow: 0, minHeight: 55 }}
                 contentContainerStyle={styles.catList}
                 renderItem={({ item }) => (
                     <TouchableOpacity
@@ -126,13 +127,14 @@ const styles = StyleSheet.create({
     },
     searchInput: { flex: 1, fontSize: SIZES.base, color: COLORS.textPrimary },
 
-    catList: { paddingHorizontal: 16, paddingBottom: 8, gap: 8 },
+    catList: { paddingHorizontal: 16, paddingBottom: 8, paddingTop: 4 },
     catChip: {
-        paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20,
+        width: 120, height: 38, justifyContent: 'center', alignItems: 'center', borderRadius: 20,
         backgroundColor: COLORS.white, borderWidth: 1, borderColor: COLORS.border,
+        marginRight: 8,
     },
     catChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
-    catChipText: { fontSize: SIZES.sm, color: COLORS.textSecondary, fontWeight: '500' },
+    catChipText: { fontSize: SIZES.sm, color: COLORS.textSecondary, fontWeight: '500', textAlign: 'center' },
     catChipTextActive: { color: COLORS.white, fontWeight: '600' },
 
     resultCount: { fontSize: SIZES.sm, color: COLORS.textSecondary, paddingHorizontal: 16, marginBottom: 8 },

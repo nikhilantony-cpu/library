@@ -197,11 +197,11 @@ const styles = StyleSheet.create({
 
     catGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
     catChip: {
-        paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20,
+        width: 120, height: 38, justifyContent: 'center', alignItems: 'center', borderRadius: 20,
         backgroundColor: COLORS.background, borderWidth: 1, borderColor: COLORS.border,
     },
     catChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
-    catText: { fontSize: SIZES.sm, color: COLORS.textSecondary, fontWeight: '500' },
+    catText: { fontSize: SIZES.sm, color: COLORS.textSecondary, fontWeight: '500', textAlign: 'center' },
     catTextActive: { color: COLORS.white, fontWeight: '600' },
 
     submitBtn: {
