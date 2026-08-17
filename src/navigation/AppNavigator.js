@@ -21,6 +21,8 @@ import LibrarianDashboard from '../screens/librarian/LibrarianDashboard';
 import IssueBookScreen from '../screens/librarian/IssueBookScreen';
 import ReturnBookScreen from '../screens/librarian/ReturnBookScreen';
 import AddBookScreen from '../screens/librarian/AddBookScreen';
+import AddStudentScreen from '../screens/librarian/AddStudentScreen';
+import ResetPasswordScreen from '../screens/librarian/ResetPasswordScreen';
 import OverdueListScreen from '../screens/librarian/OverdueListScreen';
 import LibrarianBooksScreen from '../screens/librarian/LibrarianBooksScreen';
 import StudentsScreen from '../screens/librarian/StudentsScreen';
@@ -119,6 +121,8 @@ export default function AppNavigator() {
                     <Stack.Screen name="IssueBook" component={IssueBookScreen} options={{ title: 'Issue Book' }} />
                     <Stack.Screen name="ReturnBook" component={ReturnBookScreen} options={{ title: 'Return Book' }} />
                     <Stack.Screen name="AddBook" component={AddBookScreen} options={{ title: 'Add New Book' }} />
+                    <Stack.Screen name="AddStudent" component={AddStudentScreen} options={{ title: 'Add New Student' }} />
+                    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ title: 'Reset Password' }} />
                     <Stack.Screen name="OverdueList" component={OverdueListScreen} options={{ title: 'Overdue Books' }} />
                     <Stack.Screen name="LibrarianBooks" component={LibrarianBooksScreen} options={{ title: 'All Books' }} />
                     <Stack.Screen name="Students" component={StudentsScreen} options={{ title: 'Students' }} />

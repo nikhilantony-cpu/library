@@ -23,10 +23,11 @@ export default function LibrarianDashboard({ navigation }) {
 
     const quickActions = [
         { label: 'Issue Book', icon: 'add-circle', screen: 'IssueBook', color: COLORS.primary },
+        { label: 'Add Student', icon: 'person-add', screen: 'AddStudent', color: COLORS.secondary },
+        { label: 'Reset Pass', icon: 'key', screen: 'ResetPassword', color: COLORS.danger },
         { label: 'Return Book', icon: 'return-up-back', screen: 'ReturnBook', color: COLORS.success },
         { label: 'All Books', icon: 'library', screen: 'LibrarianBooks', color: '#8B5CF6' },
         { label: 'All Students', icon: 'people', screen: 'Students', color: '#F97316' },
-        { label: 'Overdue', icon: 'alert-circle', screen: 'OverdueList', color: COLORS.danger },
         { label: 'Add Book', icon: 'book', screen: 'AddBook', color: COLORS.accent },
     ];
 
@@ -73,7 +74,7 @@ export default function LibrarianDashboard({ navigation }) {
                 </View>
 
                 {/* Quick Actions */}
-                <Text style={styles.sectionTitle}>Quick Actions</Text>
+                <Text style={styles.sectionTitle}>MAin Options</Text>
                 <View style={styles.actionsGrid}>
                     {quickActions.map((a, i) => (
                         <TouchableOpacity

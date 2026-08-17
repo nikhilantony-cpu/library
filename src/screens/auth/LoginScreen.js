@@ -22,8 +22,8 @@ export default function LoginScreen() {
             return;
         }
         setLoading(true);
-        setTimeout(() => {
-            const result = login(email.trim().toLowerCase(), password.trim());
+        setTimeout(async () => {
+            const result = await login(email.trim().toLowerCase(), password.trim());
             setLoading(false);
             if (!result.success) {
                 showNotification(result.message, 'error');
@@ -48,74 +48,65 @@ export default function LoginScreen() {
                         <Text style={styles.subtitle}>Electronics & Computer science </Text>
                     </View>
 
-                    {/* Role Toggle */}
-                    <View style={styles.roleToggle}>
-                        <TouchableOpacity
-                            style={[styles.roleBtn, role === 'student' && styles.roleBtnActive]}
-                            onPress={() => setRole('student')}
-                        >
-                            <Ionicons name="school-outline" size={16} color={role === 'student' ? COLORS.white : COLORS.primary} />
-                            <Text style={[styles.roleBtnText, role === 'student' && styles.roleBtnTextActive]}>Student</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[styles.roleBtn, role === 'librarian' && styles.roleBtnActive]}
-                            onPress={() => setRole('librarian')}
-                        >
-                            <Ionicons name="person-outline" size={16} color={role === 'librarian' ? COLORS.white : COLORS.primary} />
-                            <Text style={[styles.roleBtnText, role === 'librarian' && styles.roleBtnTextActive]}>Librarian</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <View style={{ padding: 20 }}>
 
-                    {/* Login Form */}
-                    <View style={styles.form}>
-                        <Text style={styles.formTitle}>Sign In</Text>
+                        {/* Login Form */}
+                        <View style={styles.form}>
+                            <Text style={styles.formTitle}>Sign In</Text>
 
-                        <View style={styles.inputGroup}>
-                            <Text style={styles.label}>Email Address</Text>
-                            <View style={styles.inputWrapper}>
-                                <Ionicons name="mail-outline" size={18} color={COLORS.textSecondary} style={styles.inputIcon} />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Enter your email"
-                                    placeholderTextColor={COLORS.textLight}
-                                    value={email}
-                                    onChangeText={setEmail}
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                />
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.label}>Email Address</Text>
+                                <View style={styles.inputWrapper}>
+                                    <Ionicons name="mail-outline" size={18} color={COLORS.textSecondary} style={styles.inputIcon} />
+                                    <TextInput
+                                        style={styles.input}
+                                        placeholder="Enter your email"
+                                        placeholderTextColor={COLORS.textLight}
+                                        value={email}
+                                        onChangeText={setEmail}
+                                        keyboardType="email-address"
+                                        autoCapitalize="none"
+                                    />
+                                </View>
                             </View>
-                        </View>
 
-                        <View style={styles.inputGroup}>
-                            <Text style={styles.label}>Password</Text>
-                            <View style={styles.inputWrapper}>
-                                <Ionicons name="lock-closed-outline" size={18} color={COLORS.textSecondary} style={styles.inputIcon} />
-                                <TextInput
-                                    style={[styles.input, { flex: 1 }]}
-                                    placeholder="Enter your password"
-                                    placeholderTextColor={COLORS.textLight}
-                                    value={password}
-                                    onChangeText={setPassword}
-                                    secureTextEntry={!showPassword}
-                                />
-                                <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeBtn}>
-                                    <Ionicons name={showPassword ? 'eye-outline' : 'eye-off-outline'} size={18} color={COLORS.textSecondary} />
-                                </TouchableOpacity>
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.label}>Password</Text>
+                                <View style={styles.inputWrapper}>
+                                    <Ionicons name="lock-closed-outline" size={18} color={COLORS.textSecondary} style={styles.inputIcon} />
+                                    <TextInput
+                                        style={[styles.input, { flex: 1 }]}
+                                        placeholder="Enter your password"
+                                        placeholderTextColor={COLORS.textLight}
+                                        value={password}
+                                        onChangeText={setPassword}
+                                        secureTextEntry={!showPassword}
+                                    />
+                                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeBtn}>
+                                        <Ionicons name={showPassword ? 'eye-outline' : 'eye-off-outline'} size={18} color={COLORS.textSecondary} />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
+
+                            <TouchableOpacity
+                                style={styles.forgotPassBtn}
+                                onPress={() => showNotification('Please contact the librarian to reset your password.', 'error')}
+                            >
+                                <Text style={styles.forgotPassText}>Forgot Password?</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.loginBtn} onPress={handleLogin} disabled={loading}>
+                                {loading ? (
+                                    <ActivityIndicator color={COLORS.white} />
+                                ) : (
+                                    <>
+                                        <Text style={styles.loginBtnText}>Login</Text>
+                                        <Ionicons name="arrow-forward" size={18} color={COLORS.white} />
+                                    </>
+                                )}
+                            </TouchableOpacity>
                         </View>
-
-                        <TouchableOpacity style={styles.loginBtn} onPress={handleLogin} disabled={loading}>
-                            {loading ? (
-                                <ActivityIndicator color={COLORS.white} />
-                            ) : (
-                                <>
-                                    <Text style={styles.loginBtnText}>Login</Text>
-                                    <Ionicons name="arrow-forward" size={18} color={COLORS.white} />
-                                </>
-                            )}
-                        </TouchableOpacity>
                     </View>
-
                     <Text style={styles.footer}>ECC Library • Academic Year 2025-26</Text>
                 </ScrollView>
             </KeyboardAvoidingView>
@@ -160,6 +151,9 @@ const styles = StyleSheet.create({
     inputIcon: { paddingLeft: 12 },
     input: { flex: 1, paddingHorizontal: 10, paddingVertical: 12, fontSize: SIZES.base, color: COLORS.textPrimary },
     eyeBtn: { padding: 12 },
+
+    forgotPassBtn: { alignSelf: 'flex-end', marginBottom: 16 },
+    forgotPassText: { fontSize: SIZES.sm, color: COLORS.primary, fontWeight: '600' },
 
     loginBtn: {
         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',

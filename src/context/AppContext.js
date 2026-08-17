@@ -65,7 +65,7 @@ export const AppProvider = ({ children }) => {
     }, [users, isRestoringSession]);
 
     const login = async (email, password) => {
-        const user = USERS.find(u => u.email === email && u.password === password);
+        const user = users.find(u => u.email === email && u.password === password);
         if (user) {
             setCurrentUser(user);
             try {
@@ -150,6 +150,28 @@ export const AppProvider = ({ children }) => {
         return { success: true, message: 'Book added successfully' };
     };
 
+    const addStudent = (studentData) => {
+        const emailExists = users.some(u => u.email === studentData.email);
+        if (emailExists) return { success: false, message: 'Student email already exists' };
+        const regNoExists = users.some(u => u.regNo === studentData.regNo);
+        if (regNoExists) return { success: false, message: 'Registration number already exists' };
+
+        const newStudent = {
+            ...studentData,
+            id: 'U' + Date.now(),
+            role: 'student'
+        };
+        setUsers(prev => [...prev, newStudent]);
+        return { success: true, message: 'Student added successfully' };
+    };
+
+    const resetStudentPassword = (studentId, newPassword) => {
+        setUsers(prev => prev.map(u =>
+            u.id === studentId ? { ...u, password: newPassword } : u
+        ));
+        return { success: true };
+    };
+
     const getOverdueBooks = () => {
         const today = new Date();
         return issuedBooks.filter(ib => {
@@ -177,9 +199,9 @@ export const AppProvider = ({ children }) => {
         <AppContext.Provider value={{
             currentUser, isRestoringSession, login, logout,
             books, issuedBooks, users,
-            getStudentIssuedBooks, issueBook, returnBook, addBook,
+            getStudentIssuedBooks, issueBook, returnBook, addBook, addStudent, resetStudentPassword,
             getOverdueBooks, getDashboardStats,
-            showNotification
+            notification, showNotification
         }}>
             {children}
         </AppContext.Provider>
